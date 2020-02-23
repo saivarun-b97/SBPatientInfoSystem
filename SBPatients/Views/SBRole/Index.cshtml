@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    ViewData["Title"] = "Users Index Page";
+}
+
+<h4 class="text-danger">@TempData["Message"]</h4>
+
+<h2>Current Roles</h2>
+
+@using (Html.BeginForm("Create", "SBRole", FormMethod.Post))
+{
+    <form asp-action="Create">
+        <div class="form-inline">
+            <label class="control-label">Create new role : </label>
+            <input type="text" class="form-control" placeholder="Role Name" name="Role" id="role" required />
+            <input class="btn btn-primary mb-2" type="submit" value="Create Role" />
+        </div>
+    </form>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                @if (item.Name == "Administrators")
+                {
+                    <td>
+                        <a asp-action="UserIndex" asp-route-role="@item.Name">Users in Role</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a asp-action="UserIndex" asp-route-role="@item.Name">Users in Role</a> |
+                        <a asp-action="Delete" asp-route-role="@item.Name">Delete Role</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

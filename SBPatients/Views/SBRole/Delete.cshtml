@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+@{
+    ViewData["Title"] = "Delete Roles Page";
+}
+
+<h4 class="text-danger">@TempData["Message"]</h4>
+
+<h2>Confirm Delete of Role '@TempData["Role"]'</h2>
+
+<h3>Users in Role</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    &#8226 @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-action="DeleteConfirmed">
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a type="button" class="btn btn-primary" asp-action="Index">Cancel Delete</a>
+</form>
+<a asp-action="Index">Return to Role List</a>

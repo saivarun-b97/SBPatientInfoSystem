@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SBPatients</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    @{ Boolean isAdministrator = User.IsInRole("Administrators");}
+    @*Change the bootstrap class which matches the prferred layout*@
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom:30px">
+        <div class="container">
+            <div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="background-color: dimgray; margin-top: 50px">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar" style="background-color:aliceblue"></span>
+                    <span class="icon-bar" style="background-color:aliceblue"></span>
+                    <span class="icon-bar" style="background-color:aliceblue"></span>
+                </button>
+                @*Added figure to display the logo of company*@
+                <figure>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/images/logo.png" alt="Medical Logo" style="width:100px; height:100px">
+                    </a>
+                </figure>
+                <a style="margin-top:45px" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Conestoga Clinic</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="margin-top:45px">
+                <ul class="nav navbar-nav">
+                    @*Reduced the menu items to only Medications*@
+                    @*<li><a asp-area="" asp-controller="SBCountry" asp-action="Index">Countries</a></li>
+                        <li><a asp-area="" asp-controller="SBConcentrationUnit" asp-action="Index">Concentrations</a></li>
+                        <li><a asp-area="" asp-controller="SBDiagnosisCategory" asp-action="Index">Diagnosis Categories</a></li>
+                        <li><a asp-area="" asp-controller="SBDispensingUnit" asp-action="Index">Dispensing Units</a></li>*@
+                    <li><a asp-area="" asp-controller="SBCountry" asp-action="Index">Countries</a></li>
+                    @if (isAdministrator)
+                    {
+                        <li>
+                            <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Security<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" asp-controller="SBRole" asp-action="UserIndex">User Maintenance</a></li>
+                                <li><a class="dropdown-item" asp-controller="SBRole" asp-action="Index">Role Maintenance</a></li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        @*Footer is changed as per requirements*@
+        <footer>
+            <p class="pull-left">&copy; 2019 <a href="mailto:Sbandari8878@conestogac.on.ca">Saivarun Bandari - Section 3</a></p>
+            <div class="pull-right">
+                <ul class="list-inline">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

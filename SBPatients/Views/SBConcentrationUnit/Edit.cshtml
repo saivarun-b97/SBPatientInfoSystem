@@ -1,0 +1,33 @@
+﻿@model SBPatients.Models.ConcentrationUnit
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>ConcentrationUnit</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div class="form-group">
+                <label asp-for="ConcentrationCode" class="control-label"></label>
+                @*Input is disabled to discourage editing the Primary key*@
+                <input asp-for="ConcentrationCode" class="form-control" readonly/>
+                <span asp-validation-for="ConcentrationCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

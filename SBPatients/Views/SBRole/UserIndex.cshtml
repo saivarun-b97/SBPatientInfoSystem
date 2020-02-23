@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+@{
+    ViewData["Title"] = "Users Index Page";
+}
+
+<h4 class="text-danger">@TempData["Message"]</h4>
+
+<h2>@TempData["Role"]</h2>
+
+@if (TempData["UserMaintenance"].ToString() == "True")
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        <a asp-action="DeleteUser" asp-route-userName="@item.UserName">Delete User</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    @using (Html.BeginForm("UserAdd", "SBRole", FormMethod.Post))
+    {
+        <form asp-action="UserAdd">
+            <div class="form-inline">
+                <label class="control-label">Users not in role : </label>
+                @Html.DropDownList("userName", new SelectList(ViewBag.UserNames, "Value", "Text"), new { @class = "form-control" })
+                <input class="btn btn-primary mb-2" type="submit" value="Add to Role" />
+            </div>
+        </form>
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        <a asp-action="UserDelete" asp-route-userName="@item.UserName">Remove</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="Index">Return to Role List</a>
+}

@@ -1,0 +1,35 @@
+﻿@model SBPatients.Models.PatientTreatment
+
+@{
+    ViewData["Title"] = @TempData["PatientTreatmentHeader"];
+}
+
+<h2>@TempData["PatientTreatmentHeader"]</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Date Prescribed:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DatePrescribed)
+        </dd>
+        <dt>
+            Comments:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+        <dt>
+            Treatment Name:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Treatment.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PatientTreatmentId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

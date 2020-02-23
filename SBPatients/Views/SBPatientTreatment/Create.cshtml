@@ -1,0 +1,41 @@
+﻿@model SBPatients.Models.PatientTreatment
+
+@{
+    ViewData["Title"] = @TempData["PatientTreatmentHeader"];
+}
+
+<h2>@TempData["PatientTreatmentHeader"]</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TreatmentId" class="control-label">Treatment Name:</label>
+                <select asp-for="TreatmentId" class ="form-control" asp-items="ViewBag.TreatmentId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatePrescribed" class="control-label">Date Prescribed:</label>
+                <input asp-for="DatePrescribed" type="datetime" value="@ViewData["Date"]" class="form-control" readonly/>
+                <span asp-validation-for="DatePrescribed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comments" class="control-label">Comments:</label>
+                <textarea asp-for="Comments" class="form-control" rows="3" cols="3" ></textarea>
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

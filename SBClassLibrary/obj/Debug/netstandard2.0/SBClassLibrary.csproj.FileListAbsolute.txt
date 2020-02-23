@@ -1,0 +1,8 @@
+C:\Users\saiva\source\repos\SBPatients\SBClassLibrary\obj\Debug\netstandard2.0\SBClassLibrary.csprojAssemblyReference.cache
+C:\Users\saiva\source\repos\SBPatients\SBClassLibrary\obj\Debug\netstandard2.0\SBClassLibrary.AssemblyInfoInputs.cache
+C:\Users\saiva\source\repos\SBPatients\SBClassLibrary\obj\Debug\netstandard2.0\SBClassLibrary.AssemblyInfo.cs
+C:\Users\saiva\source\repos\SBPatients\SBClassLibrary\bin\Debug\netstandard2.0\SBClassLibrary.deps.json
+C:\Users\saiva\source\repos\SBPatients\SBClassLibrary\bin\Debug\netstandard2.0\SBClassLibrary.dll
+C:\Users\saiva\source\repos\SBPatients\SBClassLibrary\bin\Debug\netstandard2.0\SBClassLibrary.pdb
+C:\Users\saiva\source\repos\SBPatients\SBClassLibrary\obj\Debug\netstandard2.0\SBClassLibrary.dll
+C:\Users\saiva\source\repos\SBPatients\SBClassLibrary\obj\Debug\netstandard2.0\SBClassLibrary.pdb
